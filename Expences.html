@@ -1,24 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Contacts</title>
+  <title>Expences</title>
   <link rel="shortcut icon" href="images/aa.png">
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- css -->
+  	<!-- css -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
   <link rel="stylesheet" type="text/css" href="css/style.css">
 
   <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous"> -->
-  <!-- JS, Popper.js, and jQuery -->
+	<!-- JS, Popper.js, and jQuery -->
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
   <script src="https://use.fontawesome.com/510bdf74c1.js"></script>
-
+  <style type="text/css">
+    html{
+      position: relative;
+      min-height: 100%;
+    }
+    .modified-footer{
+      height: 130px;
+    }
+    @media screen and (min-width: 575px){
+      .modified-footer{
+        height: 205px;
+      }
+    }
+    .page-footer{
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      left: 0;
+    }
+  </style>
 </head>
 <body>
-  <!-- Nav Bar -->
+	<!-- Nav Bar -->
 <nav class="navbar fixed-top navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
   <a class="navbar-brand" href="index.html">
     <!-- <img src="images/Tulips.jpg" width="30" height="30" class="d-inline-block align-top" alt="Logo" style="margin-right: 8px; border-radius: 7px;"> -->
@@ -29,7 +48,7 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
-        <a class="nav-link" href="index.html">Home</span></a>
+        <a class="nav-link" href="index.html">Home</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="Gallery.html">Gallery</a>
@@ -37,17 +56,17 @@
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Members</a>
         <div class="dropdown-menu border-primary" aria-labelledby="navbarDropdown" style="background-color: #e3f2fd;">
-          <a class="dropdown-item" href="core_members.html">Core Members <span class="sr-only">(current)</a>
+          <a class="dropdown-item" href="core_members.html">Core Members</a>
           <a class="dropdown-item disabled" href="#">Social Members</a>
           <div class="dropdown-divider"></div>
-           <a class="dropdown-item" href="donator.html">Donator List</a>
+          <a class="dropdown-item" href="donator.html">Donator List</a>
         </div>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="Expences.html">Expences</a>
-      </li>
       <li class="nav-item active">
-        <a class="nav-link" href="#">Contacts</a>
+        <a class="nav-link" href="#">Expences <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="contacts.html">Contacts</a>
       </li>
       <li class="nav-item">
         <a class="nav-link disabled" href="#">Next Step</a>
@@ -58,44 +77,69 @@
       <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
     </form>
   </div>
-</nav>
-<br><br><br>
+</nav><br><br><br>
 <!-- content -->
 <div class="container">
-  <div class="col-sm-6 offset-sm-3">
-    <div class="card text-center border-success">
-        <div class="border-success">
-          <nav>
-            <div class="nav nav-tabs" id="nav-tab" role="tablist">
-              <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Call Us</a>
-              <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Email Us</a>
-            </div>
-          </nav>
-        </div>
-        <div class="card-body">
-          <div class="tab-content border-success" id="nav-tabContent">
-            <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-              <p><span class="font-weight-bold">Sayan Bhowmik :</span> <span class="font-italic">9064338822</span></p>
-              <p><span class="font-weight-bold">Ritwik Roy :</span> <span class="font-italic">7074822808</span></p>
-              <p><span class="font-weight-bold">Sandip Mandal :</span> <span class="font-italic">9547588253</span></p>
-              <p><span class="font-weight-bold">Suvam Sahu :</span> <span class="font-italic">9933389606</span></p>
-            </div>
-            <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
-              <div>
-                <h3 class="h3">You Can Give Your Feedback To Us Through Email. Just Click The Button.</h3><br>
-                <a class="btn btn-primary" href="mailto:aabahaman.official@gmail.com">Send Email</a>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="card-footer border-success text-primary">Thank You For Your Feedback</div>
+  <h1 class="h1">Expences</h1><br>
+  <div id="accordion">
+  <div class="card">
+    <div class="card-header" id="headingOne">
+      <h5 class="mb-0">
+        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">2020 Expences</button>
+      </h5>
+    </div>
+
+    <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+      <div class="card-body">
+        <table class="table table-hover table-responsive-sm">
+          <caption><strong>Net Balance (Extra) (&#8377) : 4,950/-</strong></caption>
+          <caption>For Any Query Contact <strong>Sandip Mandal : 9547588253</strong></caption>
+          <thead class="table-info">
+            <tr>
+              <th scope="col">#</th><th scope="col">Expences Type</th><th scope="col">Amount (&#8377)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">1</th><td>Saree</td><td>3,200</td>
+            </tr>
+            <tr>
+              <th scope="row">2</th><td>Frock</td><td>2,000</td>
+            </tr>
+            <tr>
+              <th scope="row">3</th><td>Shirt</td><td>1,550</td>
+            </tr>
+            <tr>
+              <th scope="row">4</th><td>Kurta</td><td>220</td>
+            </tr>
+            <tr>
+              <th scope="row">5</th><td>Petrol</td><td>200</td>
+            </tr>
+            <tr>
+              <th scope="row">6</th><td>Tiffin</td><td>100</td>
+            </tr>
+            <tr>
+              <th scope="row">7</th><td>Tiffin</td><td>1,700</td>
+            </tr>
+            <tr>
+              <th scope="row">8</th><td>Bag + Mask + Sanitizer</td><td>280</td>
+            </tr>
+            <tr>
+              <th scope="row">9</th><td>Gas Oven</td><td>100</td>
+            </tr>
+            <tr class="alert alert-success">
+              <th scope="row">#</th><td>Total</td><td>9,350</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
+    </div>
   </div>
-</div><br>
-
-
+</div>
+</div>
+<div class="modified-footer"></div>
   <!-- footer -->
-<footer class="page-footer fixed-bottom font-small text-light pt-3" style="background-color: #3e4551;">
+<footer class="page-footer font-small text-light pt-3" style="background-color: #3e4551;">
   <!-- Call to action -->
   <ul class="list-unstyled list-inline text-center py-1 d-none d-sm-block">
       <li class="list-inline-item">
