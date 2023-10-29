@@ -1,0 +1,52 @@
+[
+    {
+        "Sl":1,
+        "ExpType":"Saree",
+        "Amount":"30,770"
+    },
+    {
+        "Sl":2,
+        "ExpType":"Female(Frock, Kurti, Etc.)",
+        "Amount":"6,490"
+    },
+    {
+        "Sl":3,
+        "ExpType":"Male(Shirt, T-Shirt, Punjabi, Etc.)",
+        "Amount":"9,810"
+    },
+    {
+        "Sl":4,
+        "ExpType":"Toto+Train+Bus",
+        "Amount":"375"
+    },
+    {
+        "Sl":5,
+        "ExpType":"Tiffin",
+        "Amount":"802"
+    },
+    {
+        "Sl":6,
+        "ExpType":"Tiffin",
+        "Amount":"5,925"
+    },
+    {
+        "Sl":7,
+        "ExpType":"Diary",
+        "Amount":"13"
+    },
+    {
+        "Sl":8,
+        "ExpType":"Stamp & Stamp Pad",
+        "Amount":"85"
+    },
+    {
+        "Sl":9,
+        "ExpType":"A4 Page & Print",
+        "Amount":"70"
+    },
+    {
+        "Sl":10,
+        "ExpType":"Bag",
+        "Amount":"800"
+    }
+]
