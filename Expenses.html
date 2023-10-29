@@ -11,7 +11,8 @@
 
   <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous"> -->
 	<!-- JS, Popper.js, and jQuery -->
-  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <!-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script> -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
   <script src="https://use.fontawesome.com/510bdf74c1.js"></script>
@@ -82,175 +83,8 @@
 <div class="container">
   <h1 class="h1">Expenses</h1><br>
   <div id="accordion">
-
-<!-- 2022 Exp dropdown -->
-    <div class="card">
-        <div class="card-header" id="headingOne">
-          <h5 class="mb-0">
-            <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwoTwo" aria-expanded="false" aria-controls="collapseTwoTwo">2022 Expenses</button>
-          </h5>
-        </div>
-    
-        <div id="collapseTwoTwo" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
-          <div class="card-body">
-            <table class="table table-hover table-responsive-sm">
-              <caption>
-                <p><strong>Net Balance (Extra) (&#8377) : 47,137/-</strong></p>
-                <p>2022 Extra + 2021 Balance C/F (&#8377) : 19,157 + 27,980 = 47,137/-</p>
-              </caption>
-              <caption>For Any Query Contact <strong>Sandip Mandal : 9547588253</strong></caption>
-              <thead class="table-info">
-                <tr>
-                  <th scope="col">#</th><th scope="col">Expenses Type</th><th scope="col">Amount (&#8377)</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <th scope="row">1</th><td>Saree</td><td>30,000</td>
-                </tr>
-                <tr>
-                  <th scope="row">2</th><td>Frock/Kurti</td><td>7,310</td>
-                </tr>
-                <tr>
-                  <th scope="row">3</th><td>Shirt/T-Shirt</td><td>9,030</td>
-                </tr>
-                <tr>
-                  <th scope="row">4</th><td>Transport</td><td>375</td>
-                </tr>
-                <tr>
-                  <th scope="row">5</th><td>Tiffin</td><td>870</td>
-                </tr>
-                <tr>
-                  <th scope="row">6</th><td>Tiffin</td><td>5,840</td>
-                </tr>
-                <tr>
-                  <th scope="row">7</th><td>Bag+Flex</td><td>1,150</td>
-                </tr>
-                <tr>
-                    <th scope="row">8</th><td>Saree payment due 2021</td><td>700</td>
-                  </tr>
-                <tr>
-                  <th scope="row">9</th><td>Extra</td><td>800</td>
-                </tr>
-                <tr class="alert alert-success">
-                  <th scope="row">#</th><td>Total</td><td>56,075</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
-
-<!-- 2021 Exp dropdown -->
-    <div class="card">
-      <div class="card-header" id="headingOne">
-        <h5 class="mb-0">
-          <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwoOne" aria-expanded="false" aria-controls="collapseTwoOne">2021 Expenses</button>
-        </h5>
-      </div>
-  
-      <div id="collapseTwoOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
-        <div class="card-body">
-          <table class="table table-hover table-responsive-sm">
-            <caption>
-              <p><strong>Net Balance (Extra) (&#8377) : 27,980/-</strong></p>
-              <p>2021 Extra + 2020 Balance C/F (&#8377) : 23,030 + 4,950 = 27,980/-</p>
-            </caption>
-            <caption>Balance B/F to <strong>2022 Expenses</strong></caption>
-            <thead class="table-info">
-              <tr>
-                <th scope="col">#</th><th scope="col">Expenses Type</th><th scope="col">Amount (&#8377)</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <th scope="row">1</th><td>Saree</td><td>14,830</td>
-              </tr>
-              <tr>
-                <th scope="row">2</th><td>Frock</td><td>6,100</td>
-              </tr>
-              <tr>
-                <th scope="row">3</th><td>Shirt</td><td>5,400</td>
-              </tr>
-              <tr>
-                <th scope="row">4</th><td>Transport</td><td>450</td>
-              </tr>
-              <tr>
-                <th scope="row">5</th><td>Tiffin</td><td>650</td>
-              </tr>
-              <tr>
-                <th scope="row">6</th><td>Tiffin</td><td>4,265</td>
-              </tr>
-              <tr>
-                <th scope="row">7</th><td>Bag</td><td>353</td>
-              </tr>
-              <tr>
-                <th scope="row">8</th><td>Extra</td><td>500</td>
-              </tr>
-              <tr class="alert alert-success">
-                <th scope="row">#</th><td>Total</td><td>32,548</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </div>
-
-<!-- 2020 Exp dropdown -->
-    <div class="card">
-    <div class="card-header" id="headingOne">
-      <h5 class="mb-0">
-        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">2020 Expenses</button>
-      </h5>
-    </div>
-
-    <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
-      <div class="card-body">
-        <table class="table table-hover table-responsive-sm">
-          <caption><strong>Net Balance (Extra) (&#8377) : 4,950/-</strong></caption>
-          <caption>Balance B/F to <strong>2021 Expenses</strong></caption>
-          <thead class="table-info">
-            <tr>
-              <th scope="col">#</th><th scope="col">Expenses Type</th><th scope="col">Amount (&#8377)</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <th scope="row">1</th><td>Saree</td><td>3,200</td>
-            </tr>
-            <tr>
-              <th scope="row">2</th><td>Frock</td><td>2,000</td>
-            </tr>
-            <tr>
-              <th scope="row">3</th><td>Shirt</td><td>1,550</td>
-            </tr>
-            <tr>
-              <th scope="row">4</th><td>Kurta</td><td>220</td>
-            </tr>
-            <tr>
-              <th scope="row">5</th><td>Petrol</td><td>200</td>
-            </tr>
-            <tr>
-              <th scope="row">6</th><td>Tiffin</td><td>100</td>
-            </tr>
-            <tr>
-              <th scope="row">7</th><td>Tiffin</td><td>1,700</td>
-            </tr>
-            <tr>
-              <th scope="row">8</th><td>Bag + Mask + Sanitizer</td><td>280</td>
-            </tr>
-            <tr>
-              <th scope="row">9</th><td>Gas Oven</td><td>100</td>
-            </tr>
-            <tr class="alert alert-success">
-              <th scope="row">#</th><td>Total</td><td>9,350</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
+    <!--Function will append data here from JSON-->
   </div>
-</div>
 </div>
 <div class="modified-footer"></div>
   <!-- footer -->
@@ -279,5 +113,94 @@
   </div>
   <!-- Copyright -->
 </footer>
+<script>
+  // Defining metadata values
+  const mtdt = { 2020:"9,350", 2021:"32,548", 2022:"56,075"} // i.e. year: Total Expanses
+  const extra_mtdt = { 2020:"4,950", 2021:"23,030", 2022:"19,157"} // i.e. year: extra for specific year
+  const net_extra_mtdt = { 2020:"4,950", 2021:"27,980", 2022:"47,137"} // i.e. year: net extra or extra till current year
+
+  function myFunction($param,$total_val) {
+    var fname = "expenses_data/data"+$param+".json";
+    var plc = "#data"+$param+" tbody"
+    $.getJSON(fname, function(data) {
+        var tableBody = $(plc);
+
+        // Iterate over each person object in the JSON data
+        $.each(data, function(index, val) {
+          var row = $("<tr></tr>"); // Create a new table row
+
+          // Create table cells and fill them with the person's data
+          row.append($("<th scope=\"row\"></th>").text(val.Sl));
+          row.append($("<td></td>").text(val.ExpType));
+          row.append($("<td></td>").text(val.Amount));
+
+          tableBody.append(row); // Add the row to the table body
+        });
+        tableBody.append("<tr class=\"alert alert-success\"><th scope=\"row\">#</th><td>Total</td><td>"+$total_val+"</td></tr>");
+      });
+  }
+
+  $(document).ready(function() {
+    for (let i in mtdt){
+      var cf_st = ""
+      if(i == 2020) {
+        cf_st = "" 
+      } else {
+        cf_st = "<p>"+i+" Extra + "+(parseInt(i)-1)+" Balance C/F (&#8377) : "+extra_mtdt[i]+" + "+net_extra_mtdt[i-1]+" = "+net_extra_mtdt[i]+"/-</p>" 
+      }
+      var caption_blk = `
+              <p><strong>Net Balance (Extra) (&#8377) : `+net_extra_mtdt[i]+`/-</strong></p>
+              `+cf_st+`
+              `
+
+      var cashier_details = ""
+      if(i == Math.max(...Object.keys(mtdt))) {
+        cashier_details = `
+          <caption>
+            For Any Query Contact <strong>Sandip Mandal/Pabitra Mondal.</strong>
+          </caption>
+        `
+      } else {
+        cashier_details = `
+          <caption>
+            Balance B/F to <strong>`+(parseInt(i)+1)+` Expenses</strong>
+          </caption>
+        `
+      }
+
+      var html_blk = `
+      <div class="card">
+    <div class="card-header" id="headingTwo">
+      <h5 class="mb-0">
+        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#`+i+`" aria-expanded="false" aria-controls="`+i+`">`+i+` Expenses</button>
+      </h5>
+    </div>
+    <div id="`+i+`" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+      <div class="card-body">
+        <table id="data`+i+`" class="table table-hover table-responsive-sm">
+          <caption>
+            `+caption_blk+`
+          </caption>
+            `+cashier_details+`
+          <thead class="table-info">
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Expenses Type</th>
+              <th scope="col">Amount (₹)</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+      `
+      $("#accordion").prepend(html_blk)
+    }
+    for (let i in mtdt){
+      myFunction(i,mtdt[i]);
+    }
+  });
+</script>
 </body>
 </html>

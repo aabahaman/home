@@ -1,0 +1,11 @@
+[
+    {"Sl":"1", "ExpType":"Saree", "Amount":"30,000"},
+    {"Sl":"2", "ExpType":"Frock/Kurti", "Amount":"7,310"},
+    {"Sl":"3", "ExpType":"Shirt/T-Shirt", "Amount":"9,030"},
+    {"Sl":"4", "ExpType":"Transport", "Amount":"375"},
+    {"Sl":"5", "ExpType":"Tiffin", "Amount":"870"},
+    {"Sl":"6", "ExpType":"Tiffin", "Amount":"5,840"},
+    {"Sl":"7", "ExpType":"Bag+Flex", "Amount":"1,150"},
+    {"Sl":"8", "ExpType":"Saree payment due 2021", "Amount":"700"},
+    {"Sl":"9", "ExpType":"Extra", "Amount":"800"}
+]

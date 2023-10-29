@@ -1,0 +1,10 @@
+[
+    {"Sl":"1", "ExpType":"Saree", "Amount":"14,830"},
+    {"Sl":"2", "ExpType":"Frock", "Amount":"6,100"},
+    {"Sl":"3", "ExpType":"Shirt", "Amount":"5,400"},
+    {"Sl":"4", "ExpType":"Transport", "Amount":"450"},
+    {"Sl":"5", "ExpType":"Tiffin", "Amount":"650"},
+    {"Sl":"6", "ExpType":"Tiffin", "Amount":"4,265"},
+    {"Sl":"7", "ExpType":"Bag", "Amount":"353"},
+    {"Sl":"8", "ExpType":"Extra", "Amount":"500"}
+]

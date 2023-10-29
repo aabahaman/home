@@ -1,0 +1,11 @@
+[
+    {"Sl":"1", "ExpType":"Saree", "Amount":"3,200"},
+    {"Sl":"2", "ExpType":"Frock", "Amount":"2,000"},
+    {"Sl":"3", "ExpType":"Shirt", "Amount":"1,550"},
+    {"Sl":"4", "ExpType":"Kurta", "Amount":"220"},
+    {"Sl":"5", "ExpType":"Petrol", "Amount":"200"},
+    {"Sl":"6", "ExpType":"Tiffin", "Amount":"100"},
+    {"Sl":"7", "ExpType":"Tiffin", "Amount":"1,700"},
+    {"Sl":"8", "ExpType":"Bag + Mask + Sanitizer", "Amount":"280"},
+    {"Sl":"9", "ExpType":"Gas Oven", "Amount":"100"}
+]
