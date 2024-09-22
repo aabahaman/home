@@ -137,6 +137,14 @@
   </footer>
 
 <script>
+
+  document.getElementById('email').addEventListener('input', function() {
+        document.getElementById('emailError').classList.add('d-none');
+        });
+        document.getElementById('password').addEventListener('input', function() {
+        document.getElementById('passwordError').classList.add('d-none');
+        });
+
   document.getElementById('loginForm').addEventListener('submit', function(event) {
     event.preventDefault(); // Prevent form submission
   
