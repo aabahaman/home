@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Admin Login</title>
+  <link rel="shortcut icon" href="images/aa.png">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- css -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+
+  <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous"> -->
+  <!-- JS, Popper.js, and jQuery -->
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  <script src="https://use.fontawesome.com/510bdf74c1.js"></script>
+  <style>
+    html, body {
+            height: 100%;
+        }
+    body {
+            display: flex;
+            flex-direction: column;
+        }
+    .container {
+      flex: 1;
+    }
+  </style>
+
+</head>
+<body>
+  <!-- Nav Bar -->
+<nav class="navbar fixed-top navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
+  <a class="navbar-brand" href="index.html">
+    <!-- <img src="images/Tulips.jpg" width="30" height="30" class="d-inline-block align-top" alt="Logo" style="margin-right: 8px; border-radius: 7px;"> -->
+    <img src="images/logo.png" width="210" height="32" class="d-inline-block align-top"> </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="index.html">Home</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="Gallery.html">Gallery</a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Members</a>
+        <div class="dropdown-menu border-primary" aria-labelledby="navbarDropdown" style="background-color: #e3f2fd;">
+          <a class="dropdown-item" href="core_members.html">Core Members <span class="sr-only">(current)</a>
+          <a class="dropdown-item disabled" href="#">Social Members</a>
+          <div class="dropdown-divider"></div>
+           <a class="dropdown-item" href="donator.html">Donator List</a>
+        </div>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="Expenses.html">Expenses</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="contacts.html">Contacts</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link active" href="#">Admin Login</a>
+      </li>
+    </ul>
+    <form class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="search" placeholder="Search Something" aria-label="Search">
+      <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
+    </form>
+  </div>
+</nav>
+<br><br><br>
+<!-- content -->
+<div class="container">
+  <div class="row justify-content-center">
+      <div class="col-md-6">
+          <div class="card mt-4">
+              <div class="card-header text-center">
+                  <h3>Admin Login</h3>
+              </div>
+              <div class="card-body">
+                  <form id="loginForm">
+                      <div class="form-group">
+                          <label for="email">Username</label>
+                          <input type="email" class="form-control" id="email" placeholder="Enter admin user email" required>
+                          <span id="emailError" class="text-danger d-none" role="alert">Invalid email</span>
+                      </div>
+                      <div class="form-group">
+                          <label for="password">Password</label>
+                          <input type="password" class="form-control" id="password" placeholder="Password" required>
+                          <span id="passwordError" class="text-danger d-none" role="alert">Invalid pw</span>
+                      </div>
+                      <div class="form-group form-check">
+                          <input type="checkbox" class="form-check-input" id="rememberMe">
+                          <label class="form-check-label" for="rememberMe">Remember me</label>
+                      </div>
+                      <button id="loginbtn" type="submit" class="btn btn-primary btn-block">Login</button>
+                  </form>
+              </div>
+              <div class="card-footer text-center">
+                  <a href="contacts.html">Forgot password? Contact Us.</a>
+                  <hr style="border: none; margin: 10px; height: 0.5px; background-color: gray;">
+                  <a href="contacts.html">Register yourself as Admin</a>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+
+  <!-- footer -->
+  <footer class="page-footer font-small text-light pt-3" style="background-color: #3e4551;">
+    <!-- Call to action -->
+    <ul class="list-unstyled list-inline text-center py-1 d-none d-sm-block">
+        <li class="list-inline-item">
+          <h5 class="mb-1">Join us for free</h5>
+        </li>
+        <li class="list-inline-item">
+          <a href="#!" class="btn btn-success btn-rounded">Join Us!</a>
+        </li>
+    </ul>
+    <hr class="d-none d-sm-block">
+    <!-- Social buttons -->
+    <ul class="socialIcons">
+      <li class="facebook"><a href="https://www.facebook.com/groups/343561506883166/"><i class="fa fa-fw fa-facebook"></i>Facebook</a></li>
+      <li class="twitter"><a href=""><i class="fa fa-fw fa-twitter"></i>Twitter</a></li>
+      <li class="instagram"><a href=""><i class="fa fa-fw fa-instagram"></i>Instagram</a></li>
+      <li class="pinterest"><a href=""><i class="fa fa-fw fa-google-plus"></i>Google</a></li>
+      <li class="steam"><a href=""><i class="fa fa-fw fa-linkedin"></i>Linkedin</a></li>
+    </ul>
+    <!-- Copyright -->
+    <div class="footer-copyright text-center py-2">© 2020 Copyright :
+        <a href="#"> Aabahaman</a>
+    </div>
+    <!-- Copyright -->
+  </footer>
+
+<script>
+  document.getElementById('loginForm').addEventListener('submit', function(event) {
+    event.preventDefault(); // Prevent form submission
+  
+    // Get form values
+    const username = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+  
+    // Clear previous error messages
+    document.getElementById('emailError').textContent = '';
+    document.getElementById('passwordError').textContent = '';
+  
+    // Validate credentials (example: username: admin, password: 1234)
+    if (username === 'admin@gmail.com' && password === '1234') {
+        // Redirect to another page on successful login
+        const url = 'index_admin.html';
+          const params = new URLSearchParams({
+              user: 'suvam'
+              // add if more param needed
+          });
+          window.location.href = `${url}?${params.toString()}`;
+    } else {
+        // Show error messages
+        if (username !== 'admin@gmail.com') {
+            document.getElementById('emailError').classList.remove('d-none');
+            document.getElementById('emailError').textContent = 'Invalid Email Id';
+        }
+        if (password !== '1234') {
+            document.getElementById('passwordError').classList.remove('d-none');
+            document.getElementById('passwordError').textContent = 'Invalid Password';
+        }
+    }
+    });
+
+  </script>
+  
+</body>
+</html>

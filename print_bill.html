@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Print Bills</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        .screenshot-container {
+            padding: 20px;
+            background-color: #fff;
+        }
+
+        @media print {
+            .no-print {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="form-group">
+            <label for="coreMember">Core Member</label>
+            <select class="form-control" id="coreMember" onchange="populateChildDropdown()">
+                <option value="">Select Core Member</option>
+                <option value="member1">Member 1</option>
+                <option value="member2">Member 2</option>
+                <option value="member3">Member 3</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="childMember">Donator</label>
+            <select class="form-control" id="childMember">
+                <option value="">Select Donator's Name</option>
+            </select>
+        </div>
+        <button class="btn btn-primary" onclick="showDetails()">Show Details</button>
+        
+        <div id="error" class="text-danger mt-2" style="display:none;">Please select both Core Member and Donator.</div>
+        
+        <div id="detailsTable" class="mt-4 screenshot-container" style="display:none;">
+            <div class="receipt-header text-center border">
+                <h2>Aabahaman</h2>
+                <p>Bhopur, Purba Medinipur, W.B 721151</p>
+                <p>Email: aabahaman.official@gmail.com</p>
+            </div>
+            <table class="table table-bordered">
+                <tr class="highlight">
+                    <td colspan="2" rowspan="2"><strong>PAYMENT RECEIPT</strong></td>
+                    <td><strong>No</strong></td>
+                    <td>A23/3045</td>
+                </tr>
+                <tr>
+                    <td><strong>Date</strong></td>
+                    <td>October 1, 2023</td>
+                </tr>
+                <tr>
+                    <td><strong>Received From</strong></td>
+                    <td id="donatorName">Donator's Name</td>
+                    <td rowspan="2"><strong>Amount</strong></td>
+                    <td rowspan="2">₹200.00</td>
+                </tr>
+                <tr>
+                    <td><strong>Address</strong></td>
+                    <td>Balichak</td>
+                </tr>
+                <tr class="highlight">
+                    <td><strong>Amount in Words</strong></td>
+                    <td colspan="3">Two Hundred Only</td>
+                </tr>
+                <tr>
+                    <td><strong>Received By</strong></td>
+                    <td id="refCoreMember">Ref Core Member</td>
+                    <td><strong>Signature</strong></td>
+                    <td></td>
+                </tr>
+            </table>
+        </div>
+        <div id="prntBtn" class="text-right mb-5" style="display:none;">
+            <button class="btn btn-success no-print" onclick="printTable()">Print Bill</button>
+            <button class="btn btn-primary no-print" onclick="captureScreenshot()">Capture Screenshot</button>
+        </div>
+    </div>
+
+    <script>
+        function populateChildDropdown() {
+            var coreMember = document.getElementById("coreMember").value;
+            var childMember = document.getElementById("childMember");
+            childMember.innerHTML = '<option value="">Select Donator\'s Name</option>'; // Clear previous options
+
+            // Example child members based on selected core member
+            var childMembers = {
+                "member1": ["Child 1-1", "Child 1-2"],
+                "member2": ["Child 2-1", "Child 2-2"],
+                "member3": ["Child 3-1", "Child 3-2"]
+            };
+
+            if (coreMember in childMembers) {
+                childMembers[coreMember].forEach(function(child) {
+                    var option = document.createElement("option");
+                    option.value = child;
+                    option.text = child;
+                    childMember.add(option);
+                });
+            }
+        }
+
+        function showDetails() {
+            var coreMember = document.getElementById("coreMember").value;
+            var childMember = document.getElementById("childMember").value;
+            var error = document.getElementById("error");
+
+            if (!coreMember || !childMember) {
+                error.style.display = "block";
+                return;
+            } else {
+                error.style.display = "none";
+            }
+
+            // Example details based on selected members
+            var details = {
+                "member1": {"Child 1-1": {"Name": "John Doe", "Role": "Developer", "Experience": "5 years"},
+                            "Child 1-2": {"Name": "Jane Doe", "Role": "Tester", "Experience": "3 years"}},
+                "member2": {"Child 2-1": {"Name": "Alice Smith", "Role": "Designer", "Experience": "4 years"},
+                            "Child 2-2": {"Name": "Bob Smith", "Role": "Developer", "Experience": "6 years"}},
+                "member3": {"Child 3-1": {"Name": "Charlie Brown", "Role": "Manager", "Experience": "7 years"},
+                            "Child 3-2": {"Name": "David Brown", "Role": "Analyst", "Experience": "2 years"}}
+            };
+
+            var selectedDetails = details[coreMember][childMember];
+            document.getElementById("donatorName").innerHTML=selectedDetails['Name'];
+            document.getElementById("refCoreMember").innerHTML=selectedDetails['Role'];
+            
+
+            document.getElementById("detailsTable").style.display = "block";
+            document.getElementById("prntBtn").style.display = "block";
+        }
+
+        function printTable() {
+            var printContents = document.getElementById("detailsTable").innerHTML;
+            var originalContents = document.body.innerHTML;
+            document.body.innerHTML = printContents;
+            window.print();
+            document.body.innerHTML = originalContents;
+        }
+
+        function captureScreenshot() {
+            html2canvas(document.getElementById('detailsTable')).then(canvas => {
+                let link = document.createElement('a');
+                link.download = 'table_screenshot.png';
+                link.href = canvas.toDataURL('image/png');
+                link.click();
+            });
+        }
+    </script>
+</body>
+</html>
