@@ -143,9 +143,9 @@
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
-                <div class="modal-body">
+                <div id ="userDetails" class="modal-body">
                     <p>Name: Suvam Sahu</p>
-                    <p>Role: Super Admin</p>
+                    <p>Role: Admin</p>
                     <p>Email: admin@example.com</p>
                 </div>
                 <div class="modal-footer">
@@ -163,9 +163,16 @@
     <script>
         // catching url parameter
         const params = new URLSearchParams(window.location.search);
+        const name = params.get('name');
+        const email = params.get('email');
         const user = params.get('user');
+        const role = params.get('role');
 
-        console.log(user);
+        document.getElementById('userDetails').innerHTML = `
+                    <p>Name: `+name+`</p>
+                    <p>Role: `+role+`</p>
+                    <p>Email: `+email+`</p>
+                    `
 
         // select from menu and redirect to that iframe src
         function showContent(section) {
