@@ -183,8 +183,9 @@
        document.getElementById('passwordError').textContent = '';
    
        try {
+         document.getElementById('loginbtn').innerHTML = 'Wait !! Validating User info ...';
          let profileData = await userVal();
-            
+         document.getElementById('loginbtn').innerHTML = 'Login';
          // Validate credentials (example: username: admin, password: 1234)
          if (profileData.length > 0) {
            // Redirect to another page on successful login
