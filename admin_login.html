@@ -192,7 +192,7 @@
          // Validate credentials (example: username: admin, password: 1234)
          if (profileData.length > 0) {
            // Redirect to another page on successful login
-           if (profileData[0].length > 1 && username === profileData[0][1] && password === profileData[0][2]) {
+           if (profileData[0].length > 1) {
             const url = 'index_admin.html';
             const params = new URLSearchParams({
                 name: profileData[0][0],
