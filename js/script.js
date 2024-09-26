@@ -7,7 +7,19 @@ function userVal() {
     return new Promise((resolve, reject) => {
       $.getJSON("https://script.google.com/macros/s/" + AppsScriptLink + "/exec?page=userProfile&user=" + username + "&pw=" + password,
         function (data) {
-          console.log(data);
+          // console.log(data);
+          resolve(data);
+        }).fail(function(jqxhr, textStatus, error) {
+          reject(error);
+        });
+    });
+  }
+
+function billingData() {
+    return new Promise((resolve, reject) => {
+      $.getJSON("https://script.google.com/macros/s/" + AppsScriptLink + "/exec?page=billingData",
+        function (data) {
+          // console.log(data);
           resolve(data);
         }).fail(function(jqxhr, textStatus, error) {
           reject(error);

@@ -197,8 +197,8 @@
             const params = new URLSearchParams({
                 name: profileData[0][0],
                 email: profileData[0][1],
-                user: profileData[0][3],
-                role: profileData[0][4]
+                user: profileData[0][2],
+                role: profileData[0][3]
               });
               window.location.href = `${url}?${params.toString()}`;
               sessionStorage.setItem('loggedIn', true);

@@ -25,13 +25,11 @@
 </head>
 <body>
     <div class="container mt-5">
+        <div class="text-danger mb-2" id="HeaderTxt">Please wait, loading data for you ...</div>
         <div class="form-group no-print">
             <label for="coreMember">Core Member</label>
             <select class="form-control" id="coreMember" onchange="populateChildDropdown()">
                 <option value="">Select Core Member</option>
-                <option value="member1">Member 1</option>
-                <option value="member2">Member 2</option>
-                <option value="member3">Member 3</option>
             </select>
         </div>
         <div class="form-group no-print">
@@ -52,27 +50,27 @@
             </div>
             <table class="table table-bordered">
                 <tr class="highlight">
-                    <td colspan="2" rowspan="2"><strong>PAYMENT RECEIPT</strong></td>
+                    <td colspan="2" rowspan="2"><h2><strong>PAYMENT RECEIPT</strong></h2></td>
                     <td><strong>No</strong></td>
-                    <td>A23/3045</td>
+                    <td id="invoiceID">AA23/xxxx</td>
                 </tr>
                 <tr>
                     <td><strong>Date</strong></td>
-                    <td>October 1, 2023</td>
+                    <td id="invoiceDt">October 1, 2018</td>
                 </tr>
                 <tr>
                     <td><strong>Received From</strong></td>
                     <td id="donatorName">Donator's Name</td>
                     <td rowspan="2"><strong>Amount</strong></td>
-                    <td rowspan="2">₹200.00</td>
+                    <td rowspan="2" id="Amount">₹000.00</td>
                 </tr>
                 <tr>
                     <td><strong>Address</strong></td>
-                    <td>Balichak</td>
+                    <td id="Address">Address</td>
                 </tr>
                 <tr class="highlight">
                     <td><strong>Amount in Words</strong></td>
-                    <td colspan="3">Two Hundred Only</td>
+                    <td colspan="3" id="AmtInWrd">Zero Only</td>
                 </tr>
                 <tr>
                     <td><strong>Received By</strong></td>
@@ -83,26 +81,88 @@
             </table>
         </div>
         <div id="prntBtn" class="text-right" style="display:none;">
-            <button class="btn btn-success no-print" onclick="printTable()">Print Bill</button>
-            <button class="btn btn-primary no-print" onclick="captureScreenshot()">Capture Screenshot</button>
+            <button class="btn btn-success no-print" onclick="printTable()"><i class="fas fa-print"></i> Print Bill</button>
+            <button class="btn btn-primary no-print" onclick="captureScreenshot()"><i class="fas fa-file-download"></i> Capture Screenshot</button>
         </div>
     </div>
     <div class="mb-5">
         <br>
     </div>
 
+    <script src="https://code.jquery.com/jquery-3.6.3.js" ></script>
+    <script src="js/script.js"></script>
+
     <script>
+                let CurrYear = 0;
+                let coreMember = [];
+                let childMembers = {};
+                let details = {};
+        $(document).ready(async function () {
+            try{
+                let RawData = await billingData();
+                if (RawData == "No Data Found") {
+                    document.getElementById("HeaderTxt").innerHTML="No Data Found for Current Year.";
+                } else {
+                    CurrYear = RawData.CurrYear;
+                    childMembers = {};
+                    details = {};
+    
+                    let coreMemberSet = new Set();
+                    $.each(RawData.records, function(index, record) {
+                        coreMemberSet.add(record[6]);
+                    });
+                    coreMember = Array.from(coreMemberSet);
+                    coreMember.sort();
+        
+                    $.each(RawData.records, function(index, record) {
+                      let invNo = record[7];
+                      let options = { year: 'numeric', month: 'long', day: 'numeric' };
+                      let dt = new Date(record[1]).toLocaleDateString(undefined, options);
+                      let dName = record[2];
+                      let address = record[3];
+                      let amt = new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR' }).format(record[4]);
+                      let inWrd = record[5];
+                      let cRef = record[6];
+                    
+                      // Construct data1
+                      if (!childMembers[cRef]) {
+                        childMembers[cRef] = [];
+                      }
+                      childMembers[cRef].push(dName);
+                    
+                      // Construct data2
+                      if (!details[cRef]) {
+                        details[cRef] = {};
+                      }
+                      details[cRef][dName] = [invNo, dt, address, amt, inWrd];
+                    });
+    
+                    $.each(coreMember, function(index, member) {
+                        $('#coreMember').append($('<option>', {
+                            value: member,
+                            text: member,
+                        }));
+                    });
+                    $('#HeaderTxt').removeClass('text-danger').addClass('text-success');
+                    document.getElementById("HeaderTxt").innerHTML="Data available for year : "+CurrYear;
+                }
+
+            } catch (error) {
+              console.error('Error fetching billings data:', error);
+            }
+        });
+
         function populateChildDropdown() {
             var coreMember = document.getElementById("coreMember").value;
             var childMember = document.getElementById("childMember");
             childMember.innerHTML = '<option value="">Select Donator\'s Name</option>'; // Clear previous options
 
             // Example child members based on selected core member
-            var childMembers = {
-                "member1": ["Child 1-1", "Child 1-2"],
-                "member2": ["Child 2-1", "Child 2-2"],
-                "member3": ["Child 3-1", "Child 3-2"]
-            };
+            // var childMembers = {
+            //     "member1": ["Child 1-1", "Child 1-2"],
+            //     "member2": ["Child 2-1", "Child 2-2"],
+            //     "member3": ["Child 3-1", "Child 3-2"]
+            // };
 
             if (coreMember in childMembers) {
                 childMembers[coreMember].forEach(function(child) {
@@ -127,18 +187,23 @@
             }
 
             // Example details based on selected members
-            var details = {
-                "member1": {"Child 1-1": {"Name": "John Doe", "Role": "Developer", "Experience": "5 years"},
-                            "Child 1-2": {"Name": "Jane Doe", "Role": "Tester", "Experience": "3 years"}},
-                "member2": {"Child 2-1": {"Name": "Alice Smith", "Role": "Designer", "Experience": "4 years"},
-                            "Child 2-2": {"Name": "Bob Smith", "Role": "Developer", "Experience": "6 years"}},
-                "member3": {"Child 3-1": {"Name": "Charlie Brown", "Role": "Manager", "Experience": "7 years"},
-                            "Child 3-2": {"Name": "David Brown", "Role": "Analyst", "Experience": "2 years"}}
-            };
+            // var details = {
+            //     "member1": {"Child 1-1": {"Name": "John Doe", "Role": "Developer", "Experience": "5 years"},
+            //                 "Child 1-2": {"Name": "Jane Doe", "Role": "Tester", "Experience": "3 years"}},
+            //     "member2": {"Child 2-1": {"Name": "Alice Smith", "Role": "Designer", "Experience": "4 years"},
+            //                 "Child 2-2": {"Name": "Bob Smith", "Role": "Developer", "Experience": "6 years"}},
+            //     "member3": {"Child 3-1": {"Name": "Charlie Brown", "Role": "Manager", "Experience": "7 years"},
+            //                 "Child 3-2": {"Name": "David Brown", "Role": "Analyst", "Experience": "2 years"}}
+            // };
 
             var selectedDetails = details[coreMember][childMember];
-            document.getElementById("donatorName").innerHTML=selectedDetails['Name'];
-            document.getElementById("refCoreMember").innerHTML=selectedDetails['Role'];
+            document.getElementById("invoiceID").innerHTML=selectedDetails[0];
+            document.getElementById("invoiceDt").innerHTML=selectedDetails[1];
+            document.getElementById("donatorName").innerHTML=childMember;
+            document.getElementById("Amount").innerHTML=selectedDetails[3];
+            document.getElementById("Address").innerHTML=selectedDetails[2];
+            document.getElementById("AmtInWrd").innerHTML=selectedDetails[4];
+            document.getElementById("refCoreMember").innerHTML=coreMember;
             
 
             document.getElementById("detailsTable").style.display = "block";
