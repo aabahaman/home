@@ -24,7 +24,7 @@
     </style>
 </head>
 <body>
-    <div class="container mt-5">
+    <div class="container mt-4">
         <div class="text-danger mb-2 no-print" id="HeaderTxt">Please wait, loading data for you ...</div>
         <div class="form-group no-print">
             <label for="coreMember">Core Member</label>
@@ -82,10 +82,10 @@
         </div>
         <div id="prntBtn" class="text-right" style="display:none;">
             <button class="btn btn-success no-print" onclick="printTable()"><i class="fas fa-print"></i> Print Bill</button>
-            <button class="btn btn-primary no-print" onclick="captureScreenshot()"><i class="fas fa-file-download"></i> Capture Screenshot</button>
+            <button class="btn btn-primary no-print" onclick="captureScreenshot()"><i class="fas fa-camera-retro"></i> Capture Screenshot</button>
         </div>
     </div>
-    <div class="mb-5">
+    <div class="mb-6">
         <br>
     </div>
 
@@ -93,10 +93,10 @@
     <script src="js/script.js"></script>
 
     <script>
-                let CurrYear = 0;
-                let coreMember = [];
-                let childMembers = {};
-                let details = {};
+        let CurrYear = 0;
+        let coreMember = [];
+        let childMembers = {};
+        let details = {};
         $(document).ready(async function () {
             try{
                 let RawData = await billingData();
@@ -143,6 +143,7 @@
                             text: member,
                         }));
                     });
+                    
                     $('#HeaderTxt').removeClass('text-danger').addClass('text-success');
                     document.getElementById("HeaderTxt").innerHTML="Data available for year : "+CurrYear;
                 }

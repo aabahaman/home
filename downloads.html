@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Download Files from Google Drive</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-4">
+        <div class="text-danger mb-2 no-print" id="HeaderTxt">Please wait, loading files for you ...</div>
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <h1>Download Files</h1>
+                <select id="yearDropdown" class="form-control mb-3">
+                    <option value="">Select a year</option>
+                </select>
+                <select id="fileDropdown" class="form-control mb-3">
+                    <option value="">Select a file to download</option>
+                </select>
+                <div id="error" class="text-danger mt-2 mb-2 text-start" style="display:none;">Please select a file to download.</div>
+                <button id="downloadBtn" class="btn btn-primary">Download</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="js/script.js"></script>
+
+    <script>
+        let Years = [];
+        let Files = {};
+
+        $(document).ready(async function () {
+            try{
+                let RawData = await downloadsData();
+                if (RawData == "No Files Found") {
+                    document.getElementById("HeaderTxt").innerHTML="No files available to download!";
+                } else {
+                    let yearSet = new Set();
+                    $.each(RawData, function(index, record) {
+                        yearSet.add(record[0]);
+                    });
+                    Years = Array.from(yearSet);
+                    Years.sort().reverse();
+        
+                    $.each(RawData, function(index, record) {
+                      let yearVal = record[0];
+                      let reportName = record[2];
+                      let fileId = record[3];
+
+                      // Construct files
+                      if (!Files[yearVal]) {
+                        Files[yearVal] = [];
+                      }
+                      Files[yearVal].push([reportName,fileId]);
+                    });
+    
+                    $.each(Years, function(index, year) {
+                        $('#yearDropdown').append($('<option>', {
+                            value: year,
+                            text: year,
+                        }));
+                    });
+
+                    $('#HeaderTxt').removeClass('text-danger').addClass('text-success');
+                    document.getElementById("HeaderTxt").innerHTML="Files are ready to download.";
+                }
+
+            } catch (error) {
+              console.error('Error fetching billings data:', error);
+            }
+        });
+        // const files = {
+        //     "2022": [
+        //         { id: "1aBcD1234EfGhIjKlMnOpQrStUvWxYz", name: "File 1 (2022)" },
+        //         { id: "2aBcD1234EfGhIjKlMnOpQrStUvWxYz", name: "File 2 (2022)" }
+        //     ],
+        //     "2023": [
+        //         { id: "3aBcD1234EfGhIjKlMnOpQrStUvWxYz", name: "File 1 (2023)" },
+        //         { id: "4aBcD1234EfGhIjKlMnOpQrStUvWxYz", name: "File 2 (2023)" }
+        //     ],
+        //     "2024": [
+        //         { id: "5aBcD1234EfGhIjKlMnOpQrStUvWxYz", name: "File 1 (2024)" },
+        //         { id: "6aBcD1234EfGhIjKlMnOpQrStUvWxYz", name: "File 2 (2024)" }
+        //     ]
+        // };
+
+        document.getElementById('yearDropdown').addEventListener('change', function() {
+            document.getElementById("error").style.display = "none";
+            var year = this.value;
+            var fileDropdown = document.getElementById('fileDropdown');
+            fileDropdown.innerHTML = '<option value="">Select a file</option>';
+            if (year && Files[year]) {
+                Files[year].forEach(function(file) {
+                    var option = document.createElement('option');
+                    option.value = file[1];
+                    option.textContent = file[0];
+                    fileDropdown.appendChild(option);
+                });
+            }
+        });
+
+        document.getElementById('downloadBtn').addEventListener('click', function() {
+            var fileId = document.getElementById('fileDropdown').value;
+            if (fileId) {
+                var downloadLink = `https://drive.google.com/uc?export=download&id=${fileId}`;
+                window.location.href = downloadLink;
+            } else {
+                document.getElementById("error").style.display = "block";
+            }
+        });
+    </script>
+
+</body>
+</html>
