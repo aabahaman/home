@@ -39,3 +39,15 @@ function downloadsData() {
   });
 }
 
+function homeAll() {
+  return new Promise((resolve, reject) => {
+    $.getJSON("https://script.google.com/macros/s/" + AppsScriptLink + "/exec?page=home",
+      function (data) {
+        // console.log(data);
+        resolve(data);
+      }).fail(function(jqxhr, textStatus, error) {
+        reject(error);
+      });
+  });
+}
+
