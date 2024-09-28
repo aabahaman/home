@@ -3,72 +3,167 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contribution Chart</title>
+    <title>Contributions</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
-    <div id="child-content" class="container mt-5">
-        <h2 class="text-center">Your Contribution</h2>
+    <div id="child-content" class="container mt-4">
+        <div class="text-danger mt-4 mb-3" id="HeaderTxt">Please wait, loading your page...</div>
         <div class="row">
-            <div class="col-md-6 offset-md-3">
+            <div class="col-md-4 offset-md-1">
+                <h3 id="ChartTxt1" class="text-center">Your Contribution</h3>
                 <canvas id="contributionChart"></canvas>
+            </div>
+            <div class="col-md-4 offset-md-2 mt-4">
+                <h3 id="ChartTxt2" class="text-center">Total Contribution</h3>
+                <canvas id="contributionChart1"></canvas>
             </div>
         </div>
         <div class="row mt-5">
+            <h3 id="TableHeader" class="text-center">Your Collection FY 20XX</h3>
             <div class="col-md-8 offset-md-2">
-                <table class="table table-striped">
+                <table id="MemberCollections" class="table table-striped">
                     <thead>
                         <tr>
-                            <th scope="col">Name</th>
-                            <th scope="col">Total Collection</th>
+                            <th scope="col">SL No.</th>
+                            <th scope="col">Donator's Name</th>
+                            <th scope="col">Contribution</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>John Doe</td>
-                            <td>20000</td>
-                        </tr>
-                        <tr>
-                            <td>Jane Smith</td>
-                            <td>30000</td>
-                        </tr>
-                        <tr>
-                            <td>Sam Wilson</td>
-                            <td>25000</td>
-                        </tr>
-                        <tr>
-                            <td>Yourself</td>
-                            <td>20000</td>
-                        </tr>
+                        <!-- Data will populate here -->
                     </tbody>
                 </table>
             </div>
         </div>
     </div>
+    <div class="mt-5 mb-4">
+        <br>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.3.js" ></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/script.js"></script>
 
     <script>
-        const ctx = document.getElementById('contributionChart').getContext('2d');
-        const contributionChart = new Chart(ctx, {
-            type: 'pie',
-            data: {
-                labels: ['Yourself', 'Total Contribution'],
-                datasets: [{
-                    data: [20, 80],
-                    backgroundColor: ['#FF6384', '#4BC0C0'],
-                }]
-            },
-            options: {
-                responsive: true,
-                plugins: {
-                    legend: {
-                        position: 'top',
-                    },
+        const params = new URLSearchParams(window.location.search);
+        const user = params.get('user');
+
+        const colorMD = [
+            '#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0', '#9966FF', '#FF9F40',
+            '#FF5733', '#33FF57', '#3357FF', '#FF33A1', '#A133FF', '#33FFA1',
+            '#FFB533', '#33FFB5', '#B533FF', '#FF3333', '#33FF33', '#3333FF',
+            '#FF33FF', '#33FFFF', '#FFFF33', '#FF6633', '#66FF33', '#3366FF',
+            '#FF3366', '#66FF66', '#3366FF', '#FF66FF', '#66FFFF', '#FFFF66'
+        ];
+
+        let year = 0;
+        let userName = "";
+        let bgColor = [];
+        let data1 = [];
+        let user2 = [];
+        let data2 = [];
+
+
+
+        $(document).ready(async function () {
+            try{
+                let RawData = await contributionData(user);
+                if (RawData == "No Contribution Found") {
+                    document.getElementById("HeaderTxt").innerHTML="Ops!! Something went wrong!!";
+                } else {
+                    year = RawData.Year;
+                    userName = RawData.UserName;
+                    data1 = [RawData.UserContri, RawData.GrandTotal-RawData.UserContri];
+                    user2 = RawData.UserSet;
+                    data2 = RawData.TotalContri;
+                    bgColor = colorMD.slice(0, user2.length)
+
+                    document.getElementById("ChartTxt1").innerHTML="Your Contribution on "+year;
+                    document.getElementById("ChartTxt2").innerHTML="Total Contribution on "+year;
+                    document.getElementById("TableHeader").innerHTML="Your Collection FY "+year;
+
+                    generateChart();
+
+                    let donatorID = $("#MemberCollections tbody");
+                    populateTable(donatorID,RawData.Table);
+
+                    $('#HeaderTxt').removeClass('text-danger').addClass('text-success');
+                    document.getElementById("HeaderTxt").innerHTML="Data refreshed for year : "+year;
                 }
+
+            } catch (error) {
+              console.error('Error fetching billings data:', error);
             }
         });
+
+        function populateTable(tblId,data) {
+            const $tableBody = tblId;
+            data.forEach((row, index) => {
+                const $tr = $("<tr></tr>");
+                const $rowNumber = $("<td></td>").text(index + 1);
+                $tr.append($rowNumber);
+                row.forEach((cell, cellIndex) => {
+                    if (cellIndex !== 0) {
+                        const $td = $("<td></td>");
+                        if (cellIndex === 2) {
+                            $td.text(new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR' }).format(cell));
+                        } else {
+                            $td.text(cell);
+                        }
+                        $tr.append($td);
+                    }
+                });
+                $tableBody.append($tr);
+            });
+        }
+        
+        function generateChart() {
+            const ctx = document.getElementById('contributionChart').getContext('2d');
+            const contributionChart = new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: [userName, 'Other\'s Collection'],
+                    datasets: [{
+                        data: data1,
+                        backgroundColor: ['#FF6384', '#4BC0C0'],
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                        },
+                    }
+                }
+            });
+    
+    
+            var ctx1 = document.getElementById('contributionChart1').getContext('2d');
+            var contributionChart1 = new Chart(ctx1, {
+                type: 'pie',
+                data: {
+                    labels: user2,
+                    datasets: [{
+                        data: data2,
+                        backgroundColor: bgColor,
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            display: false
+                            // position: 'bottom'
+                        },
+                    }
+                }
+            });
+        }
+    
     </script>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

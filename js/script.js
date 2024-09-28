@@ -51,3 +51,16 @@ function homeAll() {
   });
 }
 
+function contributionData(usr) {
+  const user = usr;
+  return new Promise((resolve, reject) => {
+    $.getJSON("https://script.google.com/macros/s/" + AppsScriptLink + "/exec?page=contribution&user="+user,
+      function (data) {
+        // console.log(data);
+        resolve(data);
+      }).fail(function(jqxhr, textStatus, error) {
+        reject(error);
+      });
+  });
+}
+
