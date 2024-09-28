@@ -188,7 +188,10 @@
             if (section === 'home') {
                 document.getElementById('sourceFrame').src = 'home.html';
             } else if (section === 'collection') {
-                document.getElementById('sourceFrame').src = 'contribution.html?user='+user;
+                console.log(user);
+                let contriurl = 'contribution.html?user='+user;
+                console.log(contriurl);
+                document.getElementById('sourceFrame').src = contriurl;
             } else if (section === 'bills') {
                 document.getElementById('sourceFrame').src = 'print_bill.html';
             } else if (section === 'downld') {
