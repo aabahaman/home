@@ -21,12 +21,15 @@
   <script src="https://use.fontawesome.com/510bdf74c1.js"></script>
   <style>
     html, body {
-            height: 100%;
-        }
+        height: 100%;
+    }
     body {
-            display: flex;
-            flex-direction: column;
-        }
+        display: flex;
+        min-height: 100vh;
+        flex-direction: column;
+        height: 100%;
+        overflow: hidden;
+    }
     .container {
       flex: 1;
     }
@@ -36,6 +39,14 @@
         right: 32px;
         transform: translateY(-50%);
         cursor: pointer;
+    }
+    .registrationForm {
+        width: 100%;
+        height: 100%;
+        border: none;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
     }
   </style>
 
@@ -84,7 +95,10 @@
 </nav>
 <br><br><br>
 <!-- content -->
-<div class="container">
+<button id="ToLoginBtn" class="btn mr-2 ml-2 btn-success d-none" onclick="regToLogin();">Already Registered ? Go to Login.</button>
+<iframe id="RegistrationForm" class="registrationForm d-none" src="https://docs.google.com/forms/d/e/1FAIpQLScCgFZCV3KobTJwuai7fShu6Ahk7cZuvqZCB8l0L3KZ4kFLig/viewform?embedded=true">Loading…</iframe>
+
+<div id="LoginForm" class="container">
   <div class="row justify-content-center">
       <div class="col-md-6">
           <div class="card mt-4">
@@ -114,7 +128,7 @@
               <div class="card-footer text-center">
                   <a href="contacts.html">Forgot password? Contact Us.</a>
                   <hr style="border: none; margin: 10px; height: 0.5px; background-color: gray;">
-                  <a href="contacts.html">Register yourself as Admin</a>
+                  <a href="#" onclick="loginToReg();">Register yourself as Admin</a>
               </div>
           </div>
       </div>
@@ -153,6 +167,17 @@
   <!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script> -->
   <script src="js/script.js"></script>
   <script>
+        function regToLogin() {
+            $('#LoginForm').removeClass('d-none');
+            $('#ToLoginBtn').addClass('d-none');
+            $('#RegistrationForm').addClass('d-none');
+        }
+
+        function loginToReg() {
+            $('#LoginForm').addClass('d-none');
+            $('#ToLoginBtn').removeClass('d-none');
+            $('#RegistrationForm').removeClass('d-none');
+        }
 
         const togglePassword = document.querySelector('#togglePassword');
         const password = document.querySelector('#password');

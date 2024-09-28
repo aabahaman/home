@@ -38,7 +38,7 @@
             color: rgba(0,0,0,.5);
             text-decoration: none;
             display: block;
-            padding: 10px;
+            padding: 10px 0px 10px 10px;
         }
         .sidebar a:hover {
             background: #fff;
@@ -50,7 +50,7 @@
         }
         @media (max-width: 990px) {
             .sidebar {
-                width: 150px;
+                width: 170px;
                 transform: translateX(-250px);
             }
             .sidebar.active {
@@ -127,6 +127,7 @@
             <h2 style="color: #000;">Hi, Admin</h3>
             <a href="" onclick="showContent('home')"><i class="fas fa-home"></i> Home</a>
             <a href="#" onclick="showContent('collection')"><i class="fas fa-hand-holding-usd"></i> Collection</a>
+            <a href="#" onclick="showContent('addDonators')"><i class="fas fa-user-plus"></i> Add Donators</a>
             <a href="#" onclick="showContent('bills')"><i class="fas fa-print"></i> Print Bill</a>
             <a href="#" onclick="showContent('downld')"><i class="fas fa-download"></i> Download</a>
         </div>
@@ -190,6 +191,9 @@
             } else if (section === 'collection') {
                 let contriurl = 'contribution.html?user='+user;
                 document.getElementById('sourceFrame').src = contriurl;
+            } else if (section === 'addDonators') {
+                let addDonatorsForm = '<iframe id="sourceFrame" src="https://docs.google.com/forms/d/e/1FAIpQLSct0SRhzCw1Z-ntmUK8e1UbEvabhzEIGaNj5A9eiuohay-hXw/viewform?embedded=true">Loading…</iframe>';
+                document.getElementById('content').innerHTML = addDonatorsForm;
             } else if (section === 'bills') {
                 document.getElementById('sourceFrame').src = 'print_bill.html';
             } else if (section === 'downld') {
