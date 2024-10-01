@@ -11,9 +11,65 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <style>
-        .screenshot-container {
-            padding: 20px;
+        /* .screenshot-container {
+            margin: 20px;
             background-color: #fff;
+        } */
+        .background-table {
+            position: relative;
+            width: 1020px;
+            height: 530px;
+        }
+        .background-table::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 1020px;
+            height: 530px;
+            /* border: 1px solid black; */
+            background-image: url('images/aabahaman_800_500.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            opacity: 0.4;
+            z-index: -1;
+        }
+        .stamp {
+            position: absolute;
+            top: 330px;
+            left: 760px;
+            width: 200px;
+            height: 200px;
+            background-image: url('images/stamp.png');
+            background-size: cover;
+            opacity: 1;
+            z-index: 2;
+        }
+        .receipt-header {
+            width: 1020px;
+            height: 120px;
+            /* padding: 10px; */
+            /* font-size: 20px; */
+            background-color: rgba(26, 98, 146, 0.8);
+            color: white;
+            text-align: center;
+        }
+        table {
+            width: 1020px;
+            height: 410px;
+            border-collapse: collapse;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        td {
+            border-bottom: 2px solid #597698;
+            /* border: none; */
+            padding: 10px 0px 5px 10px;
+            text-align: left;
+            vertical-align: bottom;
+            font-size: 22px;
+            background-color: rgba(255, 255, 255, 0.8);
         }
 
         @media print {
@@ -42,45 +98,48 @@
         
         <div id="error" class="text-danger mt-2" style="display:none;">Please select both Core Member and Donator.</div>
         
-        <div id="detailsTable" class="mt-4 screenshot-container" style="display:none;">
-            <div class="receipt-header text-center border">
-                <h2>Aabahaman</h2>
-                <p>Bhopur, Purba Medinipur, W.B 721151</p>
-                <p>Email: aabahaman.official@gmail.com</p>
-            </div>
-            <table class="table table-bordered">
-                <tr class="highlight">
-                    <td colspan="2" rowspan="2"><h2><strong>PAYMENT RECEIPT</strong></h2></td>
-                    <td><strong>No</strong></td>
-                    <td id="invoiceID">AA23/xxxx</td>
-                </tr>
-                <tr>
-                    <td><strong>Date</strong></td>
-                    <td id="invoiceDt">October 1, 2018</td>
-                </tr>
-                <tr>
-                    <td><strong>Received From</strong></td>
-                    <td id="donatorName">Donator's Name</td>
-                    <td rowspan="2"><strong>Amount</strong></td>
-                    <td rowspan="2" id="Amount">₹000.00</td>
-                </tr>
-                <tr>
-                    <td><strong>Address</strong></td>
-                    <td id="Address">Address</td>
-                </tr>
-                <tr class="highlight">
-                    <td><strong>Amount in Words</strong></td>
-                    <td colspan="3" id="AmtInWrd">Zero Only</td>
-                </tr>
-                <tr>
-                    <td><strong>Received By</strong></td>
-                    <td id="refCoreMember">Ref Core Member</td>
-                    <td><strong>Signature</strong></td>
-                    <td></td>
-                </tr>
-            </table>
+        <div id="detailsTable" class="background-table mt-4 screenshot-container" style="display:none;">
+          <div class="receipt-header">
+              <div style="font-family: 'Times New Roman', Times, serif; font-size: 45px; font-weight: bold; letter-spacing: 5px; color: #fff60c;">AABAHAMAN</div>
+              <p style="margin: 0;">Bhogpur, Purba Medinipur, W.B., 721151</p>
+              <p style="margin: 0;">Email: aabahaman.official@gmail.com</p>
+          </div>
+          <table>
+              <tr style="width: 500px; height: 40px;">
+                  <td colspan="2" rowspan="2" style="font-family:Arial, Helvetica, sans-serif; font-size: 40px; font-weight: bold; vertical-align: middle; border: none;"><div style="text-align: center; padding: 2%; margin-right: 240px; border: 3px solid #597698;">PAYMENT RECEIPT</div></td>
+                  <td style="width: 140px;"><strong>Receipt No : </strong></td>
+                  <td id="invoiceID" style="width: 210px;">AAYY/xx/xxxx</td>
+              </tr>
+              <tr style="height: 40px;">
+                  <td style="width: 140px;"><strong>Date : </strong></td>
+                  <td id="invoiceDt" style="width: 210px;">October 1, 2018</td>
+              </tr>
+              <tr>
+                  <td style="width: 210px; height: 50px;"><strong>Received From : </strong></td>
+                  <td id="donatorName">Donator's Name</td>
+                  <td colspan="2" style="border: none;"></td>
+              </tr>
+              <tr>
+                  <td style="width: 210px; height: 40px;"><strong>Address : </strong></td>
+                  <td id="Address">Address</td>
+                  <td style="vertical-align: middle; font-weight: bold; background-color: #c5d9f1; border: 2px solid #597698;">Amount : </td>
+                  <td id="Amount" style="vertical-align: middle; text-align: right; padding-right: 10px; font-weight: bold;  background-color: #c5d9f1; border: 2px solid #597698;">₹0000.00</td>
+              </tr>
+              <tr>
+                  <td style="width: 210px; height: 60px;"><strong>Amount in Words : </strong></td>
+                  <td colspan="2" id="AmtInWrd">Zero Only</td>
+                  <td></td>
+              </tr>
+              <tr>
+                  <td style="height: 60px;"><strong>Received By : </strong></td>
+                  <td id="refCoreMember">Ref Core Member</td>
+                  <td colspan="2"></td>
+              </tr>
+          </table>
+          <div class="stamp"></div>
         </div>
-        <div id="prntBtn" class="text-right" style="display:none;">
+
+        <div id="prntBtn" class="text-right mt-4" style="display:none;">
             <button class="btn btn-success no-print" onclick="printTable()"><i class="fas fa-print"></i> Print Bill</button>
             <button class="btn btn-primary no-print" onclick="captureScreenshot()"><i class="fas fa-camera-retro"></i> Capture Screenshot</button>
         </div>

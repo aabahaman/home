@@ -95,10 +95,10 @@
 </nav>
 <br><br><br>
 <!-- content -->
-<button id="ToLoginBtn" class="btn mr-2 ml-2 btn-success d-none" onclick="regToLogin();">Already Registered ? Go to Login.</button>
+<button id="ToLoginBtn" class="btn mr-2 ml-2 btn-primary d-none" onclick="regToLogin();">Already Registered ? Go to Login.</button>
 <iframe id="RegistrationForm" class="registrationForm d-none" src="https://docs.google.com/forms/d/e/1FAIpQLScCgFZCV3KobTJwuai7fShu6Ahk7cZuvqZCB8l0L3KZ4kFLig/viewform?embedded=true">Loading…</iframe>
 
-<div id="LoginForm" class="container">
+<div id="LoginFormContainer" class="container">
   <div class="row justify-content-center">
       <div class="col-md-6">
           <div class="card mt-4">
@@ -168,13 +168,13 @@
   <script src="js/script.js"></script>
   <script>
         function regToLogin() {
-            $('#LoginForm').removeClass('d-none');
+            $('#LoginFormContainer').removeClass('d-none');
             $('#ToLoginBtn').addClass('d-none');
             $('#RegistrationForm').addClass('d-none');
         }
 
         function loginToReg() {
-            $('#LoginForm').addClass('d-none');
+            $('#LoginFormContainer').addClass('d-none');
             $('#ToLoginBtn').removeClass('d-none');
             $('#RegistrationForm').removeClass('d-none');
         }
