@@ -9,6 +9,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.3.1/jspdf.umd.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <style>
         /* .screenshot-container {
@@ -156,6 +157,7 @@
         let coreMember = [];
         let childMembers = {};
         let details = {};
+        let fileName = 'AabahamanBill';
         $(document).ready(async function () {
             try{
                 let RawData = await billingData();
@@ -225,7 +227,8 @@
             // };
 
             if (coreMember in childMembers) {
-                childMembers[coreMember].forEach(function(child) {
+                let childArray = childMembers[coreMember].sort();
+                childArray.forEach(function(child) {
                     var option = document.createElement("option");
                     option.value = child;
                     option.text = child;
@@ -268,21 +271,50 @@
 
             document.getElementById("detailsTable").style.display = "block";
             document.getElementById("prntBtn").style.display = "block";
+            fileName = childMember.replaceAll(' ', '_');
         }
 
         function printTable() {
-            var printContents = document.getElementById("detailsTable").innerHTML;
-            var originalContents = document.body.innerHTML;
-            document.body.innerHTML = printContents;
-            window.print();
-            document.body.innerHTML = originalContents;
+            const { jsPDF } = window.jspdf;
+            const element = document.getElementById('detailsTable');
+            html2canvas(element, { scale: 2 }).then((canvas) => {
+                const imgData = canvas.toDataURL('image/png');
+                const pdf = new jsPDF('p', 'mm', 'a4');
+                const imgWidth = 210; // A4 width in mm
+                const pageHeight = 297; // A4 height in mm
+                const imgHeight = (canvas.height * imgWidth) / canvas.width;
+                let margin = 10;
+
+                pdf.addImage(imgData, 'PNG', margin, 2*margin, imgWidth-2*margin, imgHeight-2*margin);
+
+                let fileN = fileName+".pdf";
+
+                pdf.save(fileN);
+            });
         }
 
         function captureScreenshot() {
-            html2canvas(document.getElementById('detailsTable')).then(canvas => {
+            const element = document.getElementById('detailsTable');
+            const margin = 50;
+
+            html2canvas(element, { scale: 2 }).then(canvas => {
+                const newCanvas = document.createElement('canvas');
+                const context = newCanvas.getContext('2d');
+
+                // Set new canvas dimensions with margin
+                newCanvas.width = canvas.width + 2 * margin;
+                newCanvas.height = canvas.height + 2 * margin;
+
+                // Fill the new canvas with white background (optional)
+                context.fillStyle = '#ffffff';
+                context.fillRect(0, 0, newCanvas.width, newCanvas.height);
+
+                // Draw the original canvas onto the new canvas with margin
+                context.drawImage(canvas, margin, margin);
+
                 let link = document.createElement('a');
-                link.download = 'table_screenshot.png';
-                link.href = canvas.toDataURL('image/png');
+                link.download = fileName+".png";
+                link.href = newCanvas.toDataURL('image/png');
                 link.click();
             });
         }
